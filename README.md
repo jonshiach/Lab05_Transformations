@@ -8,7 +8,7 @@ Install git if you haven't already done so ([instructions](https://github.com/gi
 git clone https://github.com/jonshiach/Lab05_Transformations.git
 ```
 
-Or download the [zip file](https://github.com/jonshiach/Lab05_Transformations/zipball/master/), extract the files and rename the root folder `Lab03_Basic_shapes/`.
+Or download the [zip file](https://github.com/jonshiach/Lab05_Transformations/zipball/master/), extract the files and rename the root folder `Lab05_Transformations/`.
 
 ## Build instructions
 
