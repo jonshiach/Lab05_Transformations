@@ -101,12 +101,12 @@ int main( void )
     glBindBuffer(GL_ARRAY_BUFFER, uvBuffer);
     glBufferData(GL_ARRAY_BUFFER, sizeof(uvCoords), uvCoords, GL_STATIC_DRAW);
     
+    // Use the shader program
+    glUseProgram(shaderID);
+    
     do {
         // Clear the window
         glClear(GL_COLOR_BUFFER_BIT);
-
-        // Use the shader program
-        glUseProgram(shaderID);
         
         // Send the VBO to the shaders
         glEnableVertexAttribArray(0);
