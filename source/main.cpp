@@ -5,12 +5,13 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
-#include "shader.hpp"
-#include "texture.hpp"
-
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/io.hpp>
+
+#include "shader.hpp"
+#include "texture.hpp"
+
 
 int main( void )
 {
@@ -57,6 +58,9 @@ int main( void )
     // Compile shader program
     GLuint shaderID = LoadShaders("textureVertexShader.vert", "textureFragmentShader.frag");
     
+    // Use the shader program
+    glUseProgram(shaderID);
+    
     // Create OpenGL textures
     GLuint texture1 = loadBMP_custom("smiley.bmp");
     
@@ -101,12 +105,14 @@ int main( void )
     glBindBuffer(GL_ARRAY_BUFFER, uvBuffer);
     glBufferData(GL_ARRAY_BUFFER, sizeof(uvCoords), uvCoords, GL_STATIC_DRAW);
     
-    // Use the shader program
-    glUseProgram(shaderID);
-    
     do {
         // Clear the window
         glClear(GL_COLOR_BUFFER_BIT);
+        
+        // Bind the textures
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, texture1);
+        glUniform1i(texture1ID, 0);
         
         // Send the VBO to the shaders
         glEnableVertexAttribArray(0);
@@ -119,11 +125,6 @@ int main( void )
                               0,           // stride
                               (void*)0     // offset
                               );
-        
-        // Bind the textures
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, texture1);
-        glUniform1i(texture1ID, 0);
         
         // Send the uv buffer to the shaders
         glEnableVertexAttribArray(1);
